@@ -12,8 +12,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         ndk{
-            moduleName "Lib"
-            abiFilters "armeabi","armeabi-v7a","x86"
+            moduleName "Lib" // 生成so文件的名字，会自动带上lib  例如这个so名字生成回事libLib
+            abiFilters "armeabi","armeabi-v7a","x86"  // 输出指定三种abi体系结构下的so库。
         }
     }
     buildTypes {
