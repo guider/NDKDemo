@@ -15,6 +15,14 @@ extern "C" {
 JNIEXPORT jstring JNICALL Java_com_yanyuanquan_ndkdemo_JNIUtil_getString
   (JNIEnv *, jobject);
 
+/*
+ * Class:     com_yanyuanquan_ndkdemo_JNIUtil
+ * Method:    getBitmapByNDK
+ * Signature: ([III)[I
+ */
+JNIEXPORT jintArray JNICALL Java_com_yanyuanquan_ndkdemo_JNIUtil_getBitmapByNDK
+  (JNIEnv *, jclass, jintArray, jint, jint);
+
 #ifdef __cplusplus
 }
 #endif
