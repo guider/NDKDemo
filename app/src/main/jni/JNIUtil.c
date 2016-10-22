@@ -16,6 +16,7 @@ JNIEXPORT jstring JNICALL Java_com_yanyuanquan_ndkdemo_JNIUtil_getString
 
 JNIEXPORT jintArray JNICALL Java_com_yanyuanquan_ndkdemo_JNIUtil_getBitmapByNDK
         (JNIEnv *env, jclass clz, jintArray buffer, jint width, jint height) {
+    int arr = (*env)->CallIntMethod(env, clz, buffer, 0);
 
-    (*env) ->GetIntArrayElements(env,buffer,0);
+    return (*env)->GetIntArrayElements(env, buffer, 0);
 }

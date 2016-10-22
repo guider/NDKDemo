@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()) {
             case R.id.c:
-
+                bitmap = getBitmap(bitmap);
                 break;
             case R.id.java:
                 bitmap = ImgaeUtil.getBitmapByJava(bitmap);
@@ -45,5 +45,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
         imageView.setImageBitmap(bitmap);
+    }
+
+    private Bitmap getBitmap(Bitmap bitmap) {
+        int h = bitmap.getHeight();
+        int w = bitmap.getWidth();
+        int[] arr = new int[bitmap.getWidth() * bitmap.getHeight()];
+        for (int i = 0; i < bitmap.getWidth(); i++) {
+            for (int j = 0; j < bitmap.getHeight(); j++) {
+                arr[i * j + j] = bitmap.getPixel(i, j);
+            }
+        }
+
+        int[] resultArr = JNIUtil.getBitmapByNDK(arr, bitmap.getWidth(), bitmap.getHeight());
+
+        Bitmap resultBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.RGB_565);
+        for (int i = 0; i < resultArr.length; i++) {
+            resultBitmap.setPixel(i % h, i / w, resultArr[i]);
+        }
+
+        return resultBitmap;
     }
 }
